@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Converter</title>
+   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+   <section id="converter" class="py-5">
+  
+<div class="container">
+<div class="card bg-dark text-white" >
+  <div class="card-body">
+  <h2 class="text-center mb-4">Temperature Converter</h2>
+  <div class="row justify-content-around">
+    <div class="col-md-6 ">
+      <div class="input-group mb-3 ">
+        <input type="text" class="form-control" id="temperatureInput" placeholder="Enter temperature">
+        <div class="input-group-append">
+          <select class="form-control" id="unitSelect">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+            <option value="kelvin">Kelvin</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="row justify-content-center mt-3">
+    <div class="col-md-6">
+      <p id="result" class="text-center"> </P>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <button class="btn btn-primary btn-block" onclick="convertTemperature()">Convert</button>
+    </div>
+  </div>
+  
+</div>
+</div>
+</div>   
+</section>
+
+ 
+
+  <script>
+    function convertTemperature() {
+      var temperatureInput = document.getElementById("temperatureInput").value;
+      var unitSelect = document.getElementById("unitSelect").value;
+      var convertedTemperature;
+      
+      if (isNaN(temperatureInput)) {
+        alert("Please enter a valid number for temperature.");
+        return;
+      }
+      
+      if (unitSelect === "celsius") {
+        convertedTemperature = (parseFloat(temperatureInput) * 9 / 5) + 32;
+        document.getElementById("result").innerText = temperatureInput + " Celsius = " + convertedTemperature.toFixed(2) + " Fahrenheit";
+      } else if (unitSelect === "fahrenheit") {
+        convertedTemperature = (parseFloat(temperatureInput) - 32) * 5 / 9;
+        document.getElementById("result").innerText = temperatureInput + " Fahrenheit = " + convertedTemperature.toFixed(2) + " Celsius";
+      } else if (unitSelect === "kelvin") {
+        convertedTemperature = parseFloat(temperatureInput) + 273.15;
+        document.getElementById("result").innerText = temperatureInput + " Kelvin = " + convertedTemperature.toFixed(2) + " Celsius";
+      }
+    }
+  </script>
+</body>
+</html>
